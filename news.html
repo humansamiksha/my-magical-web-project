@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Learning Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>The Enchanted Archives</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#spells">Spells</a></li>
+                <li><a href="#potions">Potions</a></li>
+                <li><a href="#ancient-texts">Ancient Texts</a></li>
+                <li><a href="#contact">Contact the Scribe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h2>Welcome, Apprentice!</h2>
+            <p>Dive into the ancient knowledge of magic. Explore spells, craft potions, and unravel mysteries.</p>
+        </section>
+
+        <article id="featured-spell">
+            <h3>Featured Spell: Lumina Spark</h3>
+            <p>A dazzling light spell, perfect for illuminating dark caverns or surprising grumpy goblins.</p>
+            <figure>
+                <img src="https://via.placeholder.com/400x250/FFD700/FFFFFF?text=Lumina+Spark" alt="A bright magical light orb">
+                <figcaption>Lumina Spark in action – a beacon of hope!</figcaption>
+            </figure>
+            <details>
+                <summary>How to Cast This Spell?</summary>
+                <p>Focus your intent, chant "Lumina, Lumina, let light be!" and wave your wand in a gentle arc.</p>
+            </details>
+        </article>
+
+        <section id="potions">
+            <h2>Our Potion Collection</h2>
+            <ul>
+                <li>Healing Elixir</li>
+                <li>Invisibility Brew</li>
+                <li>Flight Potion</li>
+            </ul>
+        </section>
+
+        <section id="ancient-texts">
+            <article>
+                <h3>"The Scroll of Whispers</h3>
+                <p>Hey</p>
+                <p>Hi</p>
+                 <figure>
+                <img src="https://via.placeholder.com/400x250/FFD700/FFFFFF?text=Lumina+Spark" alt="A bright magical light orb">
+                <figcaption>Lumina Spark in action – a beacon of hope!</figcaption>
+            </figure>
+            </article>
+        </section>
+
+        <aside>
+            <h4>Quick Tip from the Elder Wizard</h4>
+            <p>Always double-check your ingredients! A misplaced eye of newt can lead to explosive results.</p>
+        </aside>
+
+        <section id="contact">
+            <h2>Contact the Grand Scribe</h2>
+            <form>
+                <fieldset>
+                    <legend>Your Magical Inquiry</legend>
+                    <label for="mage_name">Your Name (Required):</label><br>
+                    <input type="text" id="mage_name" name="mage_name" required pattern="[A-Za-z\s]+" title="Only letters and spaces allowed"><br><br>
+
+                    <label for="mage_email">Your Arcane Email:</label><br>
+                    <input type="email" id="mage_email" name="mage_email" required><br><br>
+
+                    <label for="inquiry_type">Inquiry Type:</label><br>
+                    <select id="inquiry_type" name="inquiry_type">
+                        <option value="spell_help">Spell Help</option>
+                        <option value="potion_recipe">Potion Recipe</option>
+                        <option value="general">General Query</option>
+                    </select><br><br>
+
+                    <label for="message">Your Message:</label><br>
+                    <textarea id="message" name="message" rows="5"></textarea><br><br>
+
+                    <label for="date">Date of Visit:</label>
+                    <input type="date" name="date" id="date">
+
+                    <button type="submit">Send Magical Message</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 The Enchanted Archives. All rights reserved. Beware of rogue pixies.</p>
+    </footer>
+</body>
+</html>
