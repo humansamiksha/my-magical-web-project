@@ -1,0 +1,329 @@
+/* --- Activity 1.3, Point 1: Universal Box-Sizing --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* --- Activity 1.5, Point 1 & 2: Custom Properties and Basic Theme --- */
+:root {
+    --primary-text-color: #333; /* Dark gray for main text */
+    --secondary-text-color: #666; /* Lighter gray */
+    --header-bg-color: #2F4F4F; /* Dark Slate Gray */
+    --nav-link-color: #ADD8E6; /* Light Blue */
+    --accent-color: #DA70D6; /* Orchid */
+    --footer-bg-color: #1A2B2B; /* Even darker for footer */
+    --spacing-unit: 1rem; /* 16px by default if root font-size is 16px */
+}
+
+body {
+    font-family: 'Georgia', serif; /* A more magical/classic font */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F8F8; /* Light background */
+    color: var(--primary-text-color);
+}
+
+header {
+    background-color: var(--header-bg-color);
+    color: #fff;
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 2); /* 1rem top/bottom, 2rem left/right */
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw + 1rem, 3.5rem); /* Activity 1.3, Point 5: clamp for responsive font */
+    color: #FFD700; /* Gold color for title */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* Subtle shadow for magic feel */
+    /* --- Activity 1.4, Point 1: Header H1 Hover Transition --- */
+    transition: transform 0.3s ease-in-out;
+}
+
+header h1:hover {
+    transform: scale(1.05); /* Hover effect */
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    /* --- Activity 1.3, Point 2: Flexbox for Nav --- */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Important for responsiveness */
+    gap: 10px; /* Space between nav items */
+}
+
+nav ul li a {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    display: block; /* Make the whole area clickable */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* --- Activity 1.2, Point 1: Adjacent Sibling Selector --- */
+/* This is a tricky one! nav ul li a is already selecting the link itself.
+   If you meant a link immediately after the entire li element, that's not how it's structured.
+   Assuming you meant to style the 'a' tags within 'li' elements, you'd apply styles directly to nav ul li a.
+   However, if there was a p tag right after nav ul li, then nav ul li + p would work.
+   Since the instruction was to select 'a' tag (link) just after nav ul li, it's actually referring to the a within the li.
+   Let's use a simple approach for understanding: if you wanted to style something after a li on the same level, it would be li + some_element.
+   For the given structure, the previous styling on nav ul li a is sufficient.
+   If the instruction implied adding another a tag outside the li but after it, then the selector would be different.
+   For demonstration, let's target a directly inside li and make its color blue, assuming this was the intent or a simplification.
+*/
+nav ul li a { /* This already applies to links. You can add this line for specific targeting */
+    /* No change here, keeping the previous color */
+    /* If you wanted a specific link based on its position, you would use nth-child() like nav ul li:nth-child(4) a */
+    /* The instruction might have implied a misunderstanding of hierarchy. */
+}
+
+
+main {
+    padding: calc(var(--spacing-unit) * 2);
+    /* --- Activity 1.3, Point 3 & 4: CSS Grid for Main Layout --- */
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Main content 2 parts, aside 1 part */
+    gap: calc(var(--spacing-unit) * 2); /* 2rem gap */
+}
+
+section, article, aside, form fieldset {
+    background-color: #fff;
+    padding: var(--spacing-unit);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* --- Activity 1.2, Point 2: General Sibling Selector --- */
+main h2 ~ p {
+    font-style: italic; /* All paragraphs after an h2 in main */
+    color: var(--secondary-text-color);
+}
+
+/* --- Activity 1.2, Point 3: Pseudo-class for odd list items --- */
+#potions ul li:nth-child(odd) {
+    background-color: #f0f0f0; /* Light gray for odd potion items */
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* --- Activity 1.5, Point 3: RGBA for article background --- */
+article#featured-spell {
+    background-color: rgba(173, 216, 230, 0.5); /* Light Blue with 50% opacity */
+}
+
+/* --- Activity 1.4, Point 3: Keyframe Animation for Lumina Spark Image --- */
+@keyframes float-subtle {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* Move 5px up */
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+article img {
+    max-width: 100%; /* Make images responsive */
+    height: auto;
+    display: block;
+    margin-top: var(--spacing-unit);
+    border-radius: 5px;
+    /* Apply the animation */
+    animation: float-subtle 3s ease-in-out infinite alternate;
+    will-change: transform; /* Hint to browser for better performance */
+}
+
+figure {
+    margin: 0; /* Remove default margin for figure */
+}
+
+figcaption {
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* --- Activity 1.2, Point 4 & Activity 1.4, Point 2: Button Styling & Pseudo-element --- */
+button[type="submit"] {
+    background-color: var(--accent-color); /* Orchid accent color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative; /* For ::before positioning */
+    overflow: hidden; /* To hide overflow from pseudo-element animation if any */
+    /* Add transition for hover effect */
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+
+button[type="submit"]:hover {
+    background-color: #B22222; /* Firebrick on hover */
+    color: #FFD700; /* Gold text on hover */
+}
+
+button[type="submit"]::before {
+    content: '✨ '; /* Sparkle emoji before text */
+    display: inline-block;
+    transition: transform 0.3s ease-out; /* Optional: animate the sparkle */
+}
+
+button[type="submit"]:hover::before {
+    transform: rotate(360deg); /* Rotate sparkle on hover */
+}
+
+
+footer {
+    /* --- Activity 1.5, Point 4: Footer Styling --- */
+    background-color: var(--footer-bg-color); /* Darker color */
+    color: #E0FFFF; /* Light Cyan for text */
+    text-align: center;
+    padding: var(--spacing-unit);
+    font-size: 0.9rem;
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+/* Basic form styling for better readability */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form select,
+form textarea {
+    width: calc(100% - 20px); /* Adjust for padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(218, 112, 214, 0.5); /* Matching accent color shadow */
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: var(--spacing-unit);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-unit);
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 10px;
+    color: var(--header-bg-color);
+}
+
+aside {
+    background-color: #FFFACD; /* Lemon Chiffon - lighter background for tip */
+    border-left: 5px solid var(--accent-color); /* Accent border */
+    padding: var(--spacing-unit);
+}
+
+aside h4 {
+    color: var(--accent-color);
+    margin-top: 0;
+}
+
+/* Basic Responsive Adjustments for Main Grid */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr; /* On smaller screens, stack columns into a single one */
+        padding: var(--spacing-unit); /* Reduce padding on mobile */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack nav items vertically on mobile */
+        align-items: center; /* Center them */
+    }
+}
+
+/* --- Hackathon Tip: Hardware Acceleration for smoother animations --- */
+.magic-element-that-animates {
+    /* Normal styling for your element */
+    width: 100px;
+    height: 100px;
+    background-color: purple;
+    transition: transform 0.5s ease-out; /* Example: A transition on transform */
+
+    /* The actual Hackathon Tip lines: */
+    will-change: transform, opacity; /* Browser ko batao ki 'transform' aur 'opacity' animate hongi */
+    transform: translateZ(0); /* Browser ko GPU acceleration ke liye force karta hai */
+    /* Ya fir ye bhi use kar sakte ho:
+    transform: translate3d(0,0,0);
+    */
+}
+
+.magic-element-that-animates:hover {
+    transform: scale(1.1) rotate(10deg); /* Animation jab hover ho */
+    opacity: 0.8;
+}
+/* --- Activity 1.4, Point 1: Header H1 Hover Transition --- */
+header h1 {
+    /* Existing header h1 styles yahan honge */
+    transition: transform 0.3s ease-in-out; /* 0.3 seconds mein smoothly badlega */
+}
+
+header h1:hover {
+    transform: scale(1.05); /* Hover par 5% bada hoga */
+}
+
+/* --- Activity 1.4, Point 2: Button Hover Transition --- */
+button[type="submit"] {
+    /* Existing button styles yahan honge */
+    transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out; /* 0.4 seconds mein color smoothly change honge */
+}
+
+button[type="submit"]:hover {
+    background-color: #B22222; /* Example: Firebrick color on hover */
+    color: #FFD700; /* Example: Gold text on hover */
+}
+
+/* --- Activity 1.4, Point 3: Keyframe Animation for Lumina Spark Image --- */
+/* Keyframe Rule Definition */
+@keyframes float-subtle {
+    0% { /* Animation ki shuruaat */
+        transform: translateY(0); /* Original position */
+    }
+    50% { /* Adha animation: thoda upar */
+        transform: translateY(-5px); /* 5 pixels upar move karo */
+    }
+    100% { /* Animation ka end: wapas original position par */
+        transform: translateY(0);
+    }
+}
+
+/* Image par animation apply karna */
+article img {
+    /* Existing image styles like max-width, height, display, etc. yahan honge */
+    animation: float-subtle 3s ease-in-out infinite alternate;
+    /*
+        animation-name: float-subtle (humare keyframe ka naam)
+        animation-duration: 3s (3 seconds mein ek cycle poori hogi)
+        animation-timing-function: ease-in-out (smooth start aur end)
+        animation-iteration-count: infinite (hamesha chalta rahega)
+        animation-direction: alternate (ek baar upar, doosri baar neeche)
+    */
+    will-change: transform; /* Performance tip: browser ko hint de rahe hain */
+}
